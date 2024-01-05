@@ -1,11 +1,25 @@
 <% if list.present? %>
   <% list.each do |one| %>
-    <div>
-      <%= one %>
+    <div class = ' text-left px-2 py-1 space-x-4 border-2'>
+      <div>
+        Name: "<%= one["Name"] %>"
+      </div>
+
+      <div>
+        Types:
+
+        <%= render "sub_element_list", elements: one["Type"].split(', ') %>
+      </div>
+
+      <div>
+        Authors:
+            <%= render "sub_element_list", elements: one["Designed by"].split(', ') %>
+      </div>
+
     </div>
   <% end %>
 <% else %>
   <div>
-  Nothing wasn't found :(
+    Nothing wasn't found :(
   </div>
 <% end %>

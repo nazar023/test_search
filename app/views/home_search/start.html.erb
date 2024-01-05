@@ -1,9 +1,9 @@
-<div>
+<div class = 'container flex flex-col items-center justify-center '>
   <div id = 'search_container'>
-  <%= form_with url: search_path(list: @list), method: :get do |form| %>
-    <%= form.label "Search", :query %>
+  <%= form_with url: search_path(list: @list), method: :get, class: "flex flex-col items-center" do |form| %>
+    <%= form.label "Search" %>
     <%= form.text_field :query %>
-    <%= form.submit "Find" %>
+    <%= form.submit "Find", class: "bg-green-200 w-32 h-8 my-4" %>
   <% end %>
   </div>
 
