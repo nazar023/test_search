@@ -1,0 +1,11 @@
+<% if list.present? %>
+  <% list.each do |one| %>
+    <div>
+      <%= one %>
+    </div>
+  <% end %>
+<% else %>
+  <div>
+  Nothing wasn't found :(
+  </div>
+<% end %>

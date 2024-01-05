@@ -1,0 +1,14 @@
+<div>
+  <div id = 'search_container'>
+  <%= form_with url: search_path(list: @list), method: :get do |form| %>
+    <%= form.label "Search", :query %>
+    <%= form.text_field :query %>
+    <%= form.submit "Find" %>
+  <% end %>
+  </div>
+
+  <div id = 'list'>
+    <%= render "list", list: @list%>
+  </div>
+
+</div>
