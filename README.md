@@ -1,24 +1,11 @@
-# README
+# Test task README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+(This README would normally document whatever steps are necessary to get the
+application up and running.)
 
-Things you may want to cover:
+In this application I used Wireless Turbo, tailwind and pure Ruby code, for
+implementing searching
 
-* Ruby version
+It's pure Ruby project created by command
+```rails new test_search -c tailwind```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
