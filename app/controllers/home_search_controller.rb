@@ -1,18 +1,16 @@
 # frozen_string_literal: true
 
 class HomeSearchController < ApplicationController # :nodoc:
-  def start
-    @list = JSON.parse(File.read('storage/data.json'))
-  end
+  before_action :define_list
+
+  def start; end
 
   def search
-    # Initialize JSON data list and query from user
-    @list = JSON.parse(File.read('storage/data.json'))
     # Split query with ' ' and downcase to make work with it easier
     @query = params[:query].split(' ').map(&:downcase)
 
     # Search in list and search negarive prompts
-    @updated_list = sort_founded_indexes(get_searched_elements_from_list)
+    @updated_list = sort_founded_indexes(searched_elements_from_list)
     @negative_prompts = find_particular_type_by_arr(find_negative_prompts_in_query)
 
     # If @updated list didn't find anything intialize empty array
@@ -21,7 +19,7 @@ class HomeSearchController < ApplicationController # :nodoc:
     # If list is blank and in query wasn't any other queries
     # That means in queary was only prompt eg. "-Iterative" or "-Compiled -Iterative"
     # Initialize original list of indexes to @updated list
-    @updated_list = (0..@list.length).to_a if @update_list.blank? && get_query_without_negative_prompts.blank?
+    @updated_list = (0..@list.length).to_a if @update_list.blank? && query_without_negative_prompts.blank?
     # Deleting all unpropriate indexes, which include @negative_prompts
     # If no prompt was entered @negative_prompts = []
     @updated_list -= @negative_prompts.uniq
@@ -35,6 +33,11 @@ class HomeSearchController < ApplicationController # :nodoc:
   end
 
   private
+
+  def define_list
+    # Initialize JSON data list and query from user
+    @list = JSON.parse(File.read('storage/data.json'))
+  end
 
   def sort_founded_indexes(indexes)
     return if indexes.blank?
@@ -57,7 +60,7 @@ class HomeSearchController < ApplicationController # :nodoc:
     indexes = sorted.map(&:keys).flatten
   end
 
-  def get_searched_elements_from_list
+  def searched_elements_from_list
     skip_index = nil
 
     @query.map.with_index do |word, index|
@@ -138,7 +141,7 @@ class HomeSearchController < ApplicationController # :nodoc:
   end
 
   # return arr of strings, query without negative prompts
-  def get_query_without_negative_prompts
+  def query_without_negative_prompts
     temp = @query.dup
     find_negative_prompt_words.map do |word|
       temp.delete(word)
@@ -163,7 +166,6 @@ class HomeSearchController < ApplicationController # :nodoc:
       end
     end
   end
-
 
   # return bool ,check whether input word mathces any particular language in language list
   def languege?(query_word)
