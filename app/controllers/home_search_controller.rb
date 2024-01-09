@@ -6,7 +6,7 @@ class HomeSearchController < ApplicationController # :nodoc:
   def start; end
 
   def search
-    @updated_list = helpers.search_elements_from_list
+    @updated_list = List.new.search_with_query(params[:query])
 
     render turbo_stream:
     update_list
