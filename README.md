@@ -4,6 +4,14 @@ This project is created due to show my ruby skills.
 In this application I used Wireless Turbo, tailwind
 And pure Ruby code, for implementing searching in JSON file
 
+## How to start ?
+
+  To try this project just clone this repository
+  ```git clone git@github.com:nazar023/test_search.git YOUR_DIRECTORY_PATH```
+
+  And start it
+  ```bin/dev```
+
 ## Architecture
 
 All logic is located in `app/models`
@@ -25,3 +33,4 @@ It's pure Ruby project created by command
 ```rails new test_search -c tailwind```
 
 No 3rd party services wasn't used
+
