@@ -28,7 +28,6 @@ class List # :nodoc:
 
     # If query is fully blank assign full list
     sorted_list = List.all_elements if query_params.blank?
-    puts sorted_list
     # return list
     sorted_list
   end
